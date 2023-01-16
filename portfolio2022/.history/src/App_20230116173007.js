@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { IntlProvider } from 'react-intl';
 import { LOCALES } from './i18n/locales';
@@ -13,24 +13,14 @@ import Gallery from './Components/Gallery/Gallery';
 import Skills from './Components/Skills/Skills';
 
 function App() {
-  const locale = LOCALES.ITALIAN;
-
-  const [currentLocale, setCurrentLocale] = useState(locale);
-
-  const handleLanguageChange = (e) => {
-    setCurrentLocale(e);
-  };
   return (
     <IntlProvider
-      messages={messages[currentLocale]}
-      locale={currentLocale}
-      defaultLocale={LOCALES.ITALIAN}
+      messages={messages[locale]}
+      locale={locale}
+      defaultLocale={locale}
     >
       <div className="main-container">
-        <Navbar
-          currentLocale={currentLocale}
-          handleLanguageChange={handleLanguageChange}
-        />
+        <Navbar />
         <Homepage />
         <About />
         <Skills />

@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
+import { IntlProvider } from 'react-intl';
 import reportWebVitals from './reportWebVitals';
+import { LOCALES } from './i18n/locales';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <IntlProvider messages={LOCALES.ITALIAN} locale="it" defaultLocale="it">
+      <App />
+    </IntlProvider>
   </React.StrictMode>
 );
 

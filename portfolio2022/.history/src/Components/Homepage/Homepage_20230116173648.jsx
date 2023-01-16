@@ -11,11 +11,4 @@ const Homepage = () => {
   );
 };
 
-const messages = defineMessages({
-  homepageTitle: {
-    id: 'homepageTitle',
-    defaultMessage: 'Ciao, sono una Front-End Developer',
-  },
-});
-
 export default Homepage;

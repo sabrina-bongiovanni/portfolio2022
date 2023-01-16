@@ -14,7 +14,7 @@ const Homepage = () => {
 const messages = defineMessages({
   homepageTitle: {
     id: 'homepageTitle',
-    defaultMessage: 'Ciao, sono una Front-End Developer',
+    defaultMessage: "Hi, I'm a Front-End Developer",
   },
 });
 

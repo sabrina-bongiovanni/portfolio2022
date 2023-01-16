@@ -1,0 +1,12 @@
+div.navbar-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  div.menu-container {
+    display: flex;
+    writing-mode: vertical-rl;
+  }
+}

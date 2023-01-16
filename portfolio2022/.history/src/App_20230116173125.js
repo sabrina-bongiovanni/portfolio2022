@@ -16,10 +16,6 @@ function App() {
   const locale = LOCALES.ITALIAN;
 
   const [currentLocale, setCurrentLocale] = useState(locale);
-
-  const handleLanguageChange = (e) => {
-    setCurrentLocale(e);
-  };
   return (
     <IntlProvider
       messages={messages[currentLocale]}
@@ -27,10 +23,7 @@ function App() {
       defaultLocale={LOCALES.ITALIAN}
     >
       <div className="main-container">
-        <Navbar
-          currentLocale={currentLocale}
-          handleLanguageChange={handleLanguageChange}
-        />
+        <Navbar />
         <Homepage />
         <About />
         <Skills />

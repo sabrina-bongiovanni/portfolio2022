@@ -18,7 +18,7 @@ function App() {
   const [currentLocale, setCurrentLocale] = useState(locale);
 
   const handleLanguageChange = (e) => {
-    setCurrentLocale(e);
+    setCurrentLocale(e.target.value);
   };
   return (
     <IntlProvider

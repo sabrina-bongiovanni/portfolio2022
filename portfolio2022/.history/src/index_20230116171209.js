@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
+import { IntlProvider } from 'react-intl';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <IntlProvider messages={{}} locale="it" defaultLocale="it">
+      <App />
+    </IntlProvider>
   </React.StrictMode>
 );
 
