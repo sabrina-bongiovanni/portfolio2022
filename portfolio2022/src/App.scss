@@ -1,6 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nunito:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nunito:wght@400;600;700&family=Ubuntu+Mono&display=swap');
+@import './variables.scss';
+
 body {
   font-family: 'Nunito';
+  background-color: $background-color;
 
   div.main-container {
     margin: 0px 150px;

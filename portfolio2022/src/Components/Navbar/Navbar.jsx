@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LOCALES } from '../../i18n/locales';
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -10,15 +10,34 @@ const Navbar = (props) => {
     { name: 'IT', code: LOCALES.ITALIAN },
     { name: 'EN', code: LOCALES.ENGLISH },
   ];
+
+  const sections = [
+    'Homepage',
+    intl.formatMessage(messages.navbarLinkAboutMe),
+    'Skills',
+    'Gallery',
+  ];
+
+  const [activeLink, setActiveLink] = useState(false);
   return (
     <div className="navbar-container">
       <div className="menu-container">
-        <div className="menu-item">Homepage</div>
-        <div className="menu-item">
-          {intl.formatMessage(messages.navbarLinkAboutMe)}
-        </div>
-        <div className="menu-item">Skills</div>
-        <div className="menu-item">Gallery</div>
+        {sections.map((sect) => {
+          return (
+            <div className="menu-item">
+              <a
+                href={`#${sect.toLowerCase()}`}
+                onClick={() => {
+                  setActiveLink(true);
+                }}
+                className={activeLink ? 'active-link' : ''}
+              >
+                {sect}
+              </a>
+            </div>
+          );
+        })}
+
         <div className="menu-item">
           {languages.map(({ name, code }) => (
             <a
@@ -33,16 +52,6 @@ const Navbar = (props) => {
               {name}
             </a>
           ))}
-          {/* <select
-            onChange={props.handleLanguageChange}
-            value={props.currentLocale}
-          >
-            {languages.map(({ name, code }) => (
-              <option key={code} value={code}>
-                {name}
-              </option>
-            ))}
-          </select> */}
         </div>
       </div>
     </div>
