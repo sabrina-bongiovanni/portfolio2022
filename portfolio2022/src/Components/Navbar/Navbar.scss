@@ -29,14 +29,59 @@ div.navbar-container {
           display: block;
           background-color: $secondary;
           width: 2px;
-          height: 100%;
+          height: 0%;
           left: -5px;
           position: absolute;
         }
 
-        &.active-link {
+        &.active-link,
+        &.active-lang {
           color: $tertiary;
+
+          &:after {
+            content: '';
+            display: block;
+            background-color: $tertiary;
+            width: 2px;
+            height: 100%;
+            left: -5px;
+            top: 0px;
+            position: absolute;
+            transition: all 600ms ease-in-out;
+          }
         }
+
+        &.inactive-link:after {
+          content: '';
+          display: block;
+          background-color: $tertiary;
+          width: 2px;
+          height: 0%;
+          left: -5px;
+          position: absolute;
+          transition: all 200ms ease-out;
+        }
+
+        &:hover {
+          color: $tertiary;
+          transition: all 300ms ease-in-out;
+
+          &:after {
+            content: '';
+            display: block;
+            background-color: $tertiary;
+            width: 2px;
+            height: 100%;
+            left: -5px;
+            position: absolute;
+            transition: all 600ms ease-in-out;
+          }
+        }
+      }
+
+      &:last-child {
+        display: flex;
+        column-gap: 10px;
       }
     }
   }

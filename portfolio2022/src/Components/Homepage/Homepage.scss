@@ -1,18 +1,27 @@
 @import '../../variables.scss';
 
 .homepage-container {
-  height: 100vh;
+  height: 60vh;
 
   .title-container {
     display: flex;
     height: 100%;
-    align-items: center;
-    width: 70%;
+    align-items: end;
     h1.title {
       font-family: 'Major Mono Display', monospace;
       color: $primary;
       font-size: 4.5rem;
       text-shadow: 7px 7px 0px transparentize($light-pink, 0.7);
+      .hello {
+        font-size: 60%;
+      }
+      .name {
+        font-size: 150%;
+        color: $secondary;
+      }
+      .job {
+        font-size: 78%;
+      }
     }
   }
 }

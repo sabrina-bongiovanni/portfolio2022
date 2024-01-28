@@ -32,7 +32,6 @@ function App() {
           currentLocale={currentLocale}
           handleLanguageChange={handleLanguageChange}
         />
-
         <Homepage />
         <About />
         <Skills />

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { LOCALES } from '../../i18n/locales';
 import { defineMessages, useIntl } from 'react-intl';
+import { motion } from 'framer-motion';
+import cx from 'classnames';
 
 import './Navbar.scss';
 
@@ -19,40 +21,65 @@ const Navbar = (props) => {
   ];
 
   const [activeLink, setActiveLink] = useState(false);
+  const [activeLang, setActiveLang] = useState('it-IT');
+
+  const handleClick = (index) => {
+    setActiveLink(index);
+  };
+
   return (
     <div className="navbar-container">
       <div className="menu-container">
-        {sections.map((sect) => {
+        {sections.map((sect, index) => {
           return (
-            <div className="menu-item">
+            <motion.div
+              className="menu-item"
+              initial={{ opacity: 0, y: '-20px' }}
+              animate={{ opacity: 1, y: '0' }}
+              transition={{ duration: 0.7 }}
+              key={index}
+            >
               <a
                 href={`#${sect.toLowerCase()}`}
                 onClick={() => {
-                  setActiveLink(true);
+                  handleClick(index);
                 }}
-                className={activeLink ? 'active-link' : ''}
+                className={cx({
+                  'active-link': activeLink === index,
+                  'inactive-link': activeLink !== index,
+                })}
               >
                 {sect}
               </a>
-            </div>
+            </motion.div>
           );
         })}
 
-        <div className="menu-item">
+        <motion.div
+          className="menu-item"
+          initial={{ opacity: 0, y: '-20px' }}
+          animate={{ opacity: 1, y: '0' }}
+          transition={{ duration: 0.7 }}
+        >
           {languages.map(({ name, code }) => (
             <a
               href="/"
-              className="language-container"
+              className={cx('language-container', {
+                'active-link': activeLang === code,
+                'inactive-link': activeLang !== code,
+              })}
               key={code}
               onClick={(event) => {
+                console.log(code);
                 event.preventDefault();
                 props.handleLanguageChange(code);
+                setActiveLang(code);
               }}
             >
               {name}
             </a>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
