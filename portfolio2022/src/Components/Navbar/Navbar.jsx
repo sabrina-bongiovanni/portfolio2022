@@ -14,10 +14,10 @@ const Navbar = (props) => {
   ];
 
   const sections = [
-    'Homepage',
-    intl.formatMessage(messages.navbarLinkAboutMe),
-    'Skills',
-    'Gallery',
+    { title: 'Homepage', token: 'homepage' },
+    { title: intl.formatMessage(messages.navbarLinkAboutMe), token: 'about' },
+    { title: 'Skills', token: 'skills' },
+    { title: 'Gallery', token: 'gallery' },
   ];
 
   const [activeLink, setActiveLink] = useState(false);
@@ -26,6 +26,8 @@ const Navbar = (props) => {
   const handleClick = (index) => {
     setActiveLink(index);
   };
+
+  console.log(sections);
 
   return (
     <div className="navbar-container">
@@ -40,7 +42,7 @@ const Navbar = (props) => {
               key={index}
             >
               <a
-                href={`#${sect.toLowerCase()}`}
+                href={`#${sect.token.toLowerCase()}`}
                 onClick={() => {
                   handleClick(index);
                 }}
@@ -49,7 +51,7 @@ const Navbar = (props) => {
                   'inactive-link': activeLink !== index,
                 })}
               >
-                {sect}
+                {sect.title}
               </a>
             </motion.div>
           );

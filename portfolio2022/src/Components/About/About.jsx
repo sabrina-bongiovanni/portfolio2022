@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import pic from '../media/picture.jpg?width="1000';
-import { motion } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 
 const About = () => {
+  const ref = useRef(null);
   const divVariant = {
     offscreen: {
       opacity: 0,
@@ -11,12 +12,15 @@ const About = () => {
       opacity: 1,
     },
   };
+
   return (
     <motion.div
+      ref={ref}
+      id="about"
       className="about-container"
       initial={divVariant.offscreen}
       whileInView={divVariant.onscreen}
-      viewport={{ once: false, amount: 0.9 }}
+      viewport={{ once: false, amount: 1, margin: '0px 0px -100px 0px' }}
     >
       <div className="about-me-content">
         <div className="text">Lorem ipsum</div>

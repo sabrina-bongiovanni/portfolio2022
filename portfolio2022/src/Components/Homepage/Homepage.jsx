@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
-import { motion } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 
 import './Homepage.scss';
+
+// https://www.youtube.com/watch?v=m1Cm1ivOjzU
 
 const Homepage = () => {
   const intl = useIntl();
@@ -19,7 +21,7 @@ const Homepage = () => {
           opacity: 1,
           transition: { type: 'spring', bounce: 0.4, duration: 0.8 },
         }}
-        viewport={{ once: false, amount: 0.99 }}
+        viewport={{ once: false, amount: 0.8 }}
         initial={{ opacity: 0 }}
       >
         <motion.h1
