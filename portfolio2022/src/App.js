@@ -14,31 +14,38 @@ import Gallery from './Components/Gallery/Gallery';
 import Skills from './Components/Skills/Skills';
 
 function App() {
-  const locale = LOCALES.ITALIAN;
+	const locale = LOCALES.ITALIAN;
 
-  const [currentLocale, setCurrentLocale] = useState(locale);
+	const [
+		currentLocale,
+		setCurrentLocale,
+	] = useState(locale);
 
-  const handleLanguageChange = (e) => {
-    setCurrentLocale(e);
-  };
-  return (
-    <IntlProvider
-      messages={messages[currentLocale]}
-      locale={currentLocale}
-      defaultLocale={LOCALES.ITALIAN}
-    >
-      <div className="main-container">
-        <Navbar
-          currentLocale={currentLocale}
-          handleLanguageChange={handleLanguageChange}
-        />
-        <Homepage />
-        <About />
-        <Skills />
-        <Gallery />
-      </div>
-    </IntlProvider>
-  );
+	console.log('prova');
+
+	const handleLanguageChange = (e) => {
+		setCurrentLocale(e);
+	};
+	return (
+		<IntlProvider
+			messages={messages[currentLocale]}
+			locale={currentLocale}
+			defaultLocale={LOCALES.ITALIAN}
+		>
+			<div className="main-container">
+				<Navbar
+					currentLocale={currentLocale}
+					handleLanguageChange={
+						handleLanguageChange
+					}
+				/>
+				<Homepage />
+				<About />
+				<Skills />
+				<Gallery />
+			</div>
+		</IntlProvider>
+	);
 }
 
 export default App;
