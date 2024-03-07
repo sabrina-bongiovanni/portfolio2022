@@ -25,3 +25,9 @@
     }
   }
 }
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .homepage-container {
+    height: 100vh;
+  }
+}

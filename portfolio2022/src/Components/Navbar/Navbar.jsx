@@ -23,11 +23,18 @@ const Navbar = (props) => {
   const [activeLink, setActiveLink] = useState(false);
   const [activeLang, setActiveLang] = useState('it-IT');
 
-  const handleClick = (index) => {
+  const handleClick = (index, sect) => {
     setActiveLink(index);
+    scrollToSection(sect);
   };
 
-  console.log(sections);
+  const scrollToSection = (sect) => {
+    const scrollElement = document.getElementById(sect.token.toLowerCase());
+    scrollElement?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  };
 
   return (
     <div className="navbar-container">
@@ -41,10 +48,10 @@ const Navbar = (props) => {
               transition={{ duration: 0.7 }}
               key={index}
             >
-              <a
-                href={`#${sect.token.toLowerCase()}`}
+              <button
+                // href={`#${sect.token.toLowerCase()}`}
                 onClick={() => {
-                  handleClick(index);
+                  handleClick(index, sect);
                 }}
                 className={cx({
                   'active-link': activeLink === index,
@@ -52,7 +59,7 @@ const Navbar = (props) => {
                 })}
               >
                 {sect.title}
-              </a>
+              </button>
             </motion.div>
           );
         })}

@@ -1,9 +1,14 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
+
 import pic from '../media/picture.jpg?width="1000';
 import { motion, useScroll } from 'framer-motion';
 
 const About = () => {
-  const ref = useRef(null);
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
+  console.log(isMobile);
+
   const divVariant = {
     offscreen: {
       opacity: 0,
@@ -13,14 +18,21 @@ const About = () => {
     },
   };
 
+  const animationViewportSettings = isMobile
+    ? {
+        once: false,
+        amount: 1,
+        margin: '0px 0px -300px 0px',
+      }
+    : { once: false, amount: 1, margin: '0px 0px -120px 0px' };
+
   return (
     <motion.div
-      ref={ref}
       id="about"
       className="about-container"
       initial={divVariant.offscreen}
       whileInView={divVariant.onscreen}
-      viewport={{ once: false, amount: 1, margin: '0px 0px -100px 0px' }}
+      viewport={animationViewportSettings}
     >
       <div className="about-me-content">
         <div className="text">Lorem ipsum</div>

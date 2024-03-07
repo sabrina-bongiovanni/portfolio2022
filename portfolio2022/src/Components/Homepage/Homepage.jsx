@@ -1,7 +1,8 @@
 import React from 'react';
+import useMediaQuery from 'react-responsive';
 
 import { defineMessages, useIntl } from 'react-intl';
-import { motion, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import './Homepage.scss';
 
@@ -9,6 +10,8 @@ import './Homepage.scss';
 
 const Homepage = () => {
   const intl = useIntl();
+
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
     <div className="homepage-container" id="homepage">
@@ -29,9 +32,7 @@ const Homepage = () => {
           initial={{ opacity: 0 }}
           whileInView={{
             opacity: 1,
-            // transition: { type: 'spring', bounce: 0.4, duration: 0.8 },
           }}
-          // viewport={{ once: false, amount: 0 }}
         >
           <motion.div
             className="hello"

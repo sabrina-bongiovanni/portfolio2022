@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { LOCALES } from './i18n/locales';
 import { messages } from './i18n/messages';
-import Zoom from 'react-reveal/Zoom';
 
 import './App.scss';
 

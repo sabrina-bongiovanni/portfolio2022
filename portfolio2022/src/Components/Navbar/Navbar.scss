@@ -16,13 +16,16 @@ div.navbar-container {
     justify-content: space-evenly;
 
     .menu-item {
-      font-family: 'Ubuntu Mono';
-      font-size: 1.5rem;
-
+      button,
       a {
         color: $secondary;
         text-decoration: none;
         position: relative;
+        border: none;
+        background-color: transparent;
+        font-family: 'Ubuntu Mono';
+        font-size: 1.5rem;
+        padding: 0px;
 
         &:after {
           content: '';
@@ -73,6 +76,7 @@ div.navbar-container {
             width: 2px;
             height: 100%;
             left: -5px;
+            top: 0;
             position: absolute;
             transition: all 600ms ease-in-out;
           }
