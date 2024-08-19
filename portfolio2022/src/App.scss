@@ -7,7 +7,12 @@ body {
   background-color: $background-color;
 
   div.main-container {
-    margin: 0px 150px;
+    margin-left: 150px;
+    max-width: 75%;
+
+    .section-container {
+      width: 1330px;
+    }
 
     @media (min-width: 375px) and (max-width: 767px) {
       margin: 0px 80px;

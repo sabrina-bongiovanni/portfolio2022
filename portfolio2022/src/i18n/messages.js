@@ -1,15 +1,22 @@
 import { LOCALES } from './locales';
 
 export const messages = {
-  [LOCALES.ENGLISH]: {
-    navbarLinkAboutMe: 'About me',
-    hello: "Hi, I'm",
-    aboutMeText:
-      "Born translator and linguistic mediator, turned Front-End developer. have a BA in Intercultural and Linguistic Mediation, with 2+ years of experience as a translator in a software house, where I had the chance to really get close and dive into the coding world. I attended the SheCodes Plus course to start my journey in the coding world, and now I'm attending the Domestika Introduction to PHP course, as well as Udemy Angular and React course. My skills as a translator and localizer translate really well into the coding world, as the challenges hidden in learning languages and finding out the best solutions to translate a text from a language to another have really allowed me to understand how to structure efficient code and to work around even the toughest, seemingly impossible-to-solve problems in coding.",
-  },
-  [LOCALES.ITALIAN]: {
-    navbarLinkAboutMe: 'Su di me',
-    hello: 'Ciao, sono',
-    // aboutMeText
-  },
+	[LOCALES.ENGLISH]: {
+		navbarLinkAboutMe: 'About me',
+		navbarLinkProjects: 'Projects',
+		hello: "Hi, I'm",
+		par1: 'Front End Developer specialized in React with 2-years-long experience in web development.',
+		par2: 'Translator and linguistic mediator turned to web development, passionate about this world since I started learning HTML and CSS for fun at 12 years old.',
+		par3: 'My translator and localizator skills translated well into the development world. The challenge hidden in finding the perfect solution to tackle a particularly difficult translation is not that different from the one consiting in solving even the most difficult, seemingly impossible-to-solve coding problem.',
+		par4: "Whether it's languages like English or Portuguese, Javascript or CSS, I can translate any requirement into the right language for functional, responsive, and engaging websites.",
+	},
+	[LOCALES.ITALIAN]: {
+		navbarLinkAboutMe: 'Su di me',
+		navbarLinkProjects: 'Progetti',
+		hello: 'Ciao, sono',
+		par1: 'Front End Developer specializzata in React con 2 anni di esperienza in web development.',
+		par2: 'Traduttrice e mediatrice linguistica convertita a web developer, appassionata a questo mondo da quando a 12 anni ho imparato a scrivere HTML e CSS per divertimento.',
+		par3: 'Le mie skill da traduttrice e localizzatrice si sono adattate bene al mondo del coding. La sfida di trovare la soluzione perfetta per raggirare una traduzione particolarmente difficile non dista molto da quella di risolvere anche il più difficile e apparentemente irrisolvibile dei problemi nello scrivere codice.',
+		par4: 'Che si tratti di lingue come Inglese o Portoghese, Javascript o CSS, posso tradurre qualsiasi esigenza nel linguaggio giusto, per siti web funzionali, responsivi e coinvolgenti.',
+	},
 };

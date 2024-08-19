@@ -1,0 +1,17 @@
+[
+	{
+		"projectId": 1,
+		"projectImg": "weather_app",
+		"projectName": "App Meteo",
+		"projectDescription": "Progetto finale per il corso SheCodes Plus. Un'app meteo che fornisce informazioni su condizione meteo, temperatura corrente, minima e massima, umidità, vento, previsioni fino a 5 giorni, ricerca per luogo e bottone per impostare la posizione corrente.",
+		"projectRepoLink": "https://github.com/sabrina-bongiovanni/SheCodes-project-optimized",
+		"projectsTechnologies": [
+			"HTML",
+			"CSS",
+			"Javascript",
+			"API",
+			"Bootstrap",
+			"Responsive"
+		]
+	}
+]
