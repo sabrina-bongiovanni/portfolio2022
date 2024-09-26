@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
-import { messages } from '../../i18n/messages';
+import React, { useRef, useState, useEffect } from "react";
+import { messages } from "../../i18n/messages";
 
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 import pic from '../../media/picture.jpg?width="1000"';
 import {
@@ -9,282 +9,160 @@ import {
   motion,
   useScroll,
   useTransform,
-} from 'framer-motion';
+  useMotionValueEvent,
+  useMotionValue,
+  useInView,
+  useAnimation,
+} from "framer-motion";
 
 const About = ({ currentLocale }) => {
-  const aboutSectRef = useRef();
+  const aboutSectRef = useRef(null);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [isFlipping, setIsFlipping] = useState(false);
+  const controls = useAnimation();
 
-  const { scrollYProgress } = useScroll(
-    {
-      target: aboutSectRef,
-      offset: [
-        'start center',
-        'end start',
-      ],
-    }
-  );
+  const { scrollYProgress } = useScroll({
+    target: aboutSectRef,
+    offset: ["0vh", "100vh"],
+  });
 
-  const animationOrder = {
-    initial: 0,
-    imageFadeIn: 0.25,
-    imageFadeInEnd: 0.3,
-    par1SlideIn: 0.35,
-    par1SlideInEnd: 0.4,
-    par2SlideIn: 0.45,
-    par2SlideInEnd: 0.5,
-    par3SlideIn: 0.55,
-    par3SlideInEnd: 0.6,
-    par4SlideIn: 0.65,
-    par4SlideInEnd: 0.7,
-    aboutSectFadeOutStart: 0.75,
-    aboutSectFadeOutEnd: 0.9,
-  };
+  console.log(scrollYProgress.current);
 
-  const imgOpacity = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.imageFadeIn,
-      animationOrder.imageFadeInEnd,
-    ],
-    [0, 1]
-  );
-
-  const par1SlideIn = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.par1SlideIn,
-      animationOrder.par1SlideInEnd,
-    ],
-    ['20%', '0%'],
-    { ease: easeInOut }
-  );
-  const par1SlideInFade = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.par1SlideIn,
-      animationOrder.par1SlideInEnd,
-    ],
-    [0, 1],
-    { ease: easeInOut }
-  );
-
-  const par2SlideIn = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.par2SlideIn,
-      animationOrder.par2SlideInEnd,
-    ],
-    ['20%', '0%'],
-    { ease: easeInOut }
-  );
-
-  const par2SlideInFade = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.par2SlideIn,
-      animationOrder.par2SlideInEnd,
-    ],
-    [0, 1],
-    { ease: easeInOut }
-  );
-
-  const par3SlideIn = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.par3SlideIn,
-      animationOrder.par3SlideInEnd,
-    ],
-    ['20%', '0%'],
-    { ease: easeInOut }
-  );
-
-  const par3SlideInFade = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.par3SlideIn,
-      animationOrder.par3SlideInEnd,
-    ],
-    [0, 1],
-    { ease: easeInOut }
-  );
-
-  const par4SlideIn = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.par4SlideIn,
-      animationOrder.par4SlideInEnd,
-    ],
-    ['20%', '0%'],
-    { ease: easeInOut }
-  );
-
-  const par4SlideInFade = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.par4SlideIn,
-      animationOrder.par4SlideInEnd,
-    ],
-    [0, 1],
-    { ease: easeInOut }
-  );
-
-  const aboutSectFadeOut = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.aboutSectFadeOutStart,
-      animationOrder.aboutSectFadeOutEnd,
-    ],
-    [1, 0],
-    { ease: easeInOut }
-  );
-
-  const aboutSectScale = useTransform(
-    scrollYProgress,
-    [
-      animationOrder.aboutSectFadeOutStart,
-      animationOrder.aboutSectFadeOutEnd,
-    ],
-    ['100%', '70%'],
-    { ease: easeInOut }
-  );
-
-  const aboutSectTranslateY =
-    useTransform(
-      scrollYProgress,
-      [
-        animationOrder.aboutSectFadeOutStart,
-        animationOrder.aboutSectFadeOutEnd,
-      ],
-      ['0', '20%'],
-      { ease: easeInOut }
-    );
-
-  // const isMobile = useMediaQuery({
-  // 	query: '(max-width: 767px)',
-  // });
-
-  // const divVariant = {
-  // 	offscreen: {
-  // 		opacity: 0,
-  // 	},
-  // 	onscreen: {
-  // 		opacity: 1,
-  // 	},
+  // // Flip animation sequence
+  // const flipSequence = async () => {
+  //   setIsFlipping(true);
+  //   await controls.start({
+  //     rotateY: 720, // 2 flips (720 degrees)
+  //     transition: { duration: 1, ease: "easeInOut" },
+  //   });
+  //   setIsFlipped(true); // Mark that it has flipped
+  //   setIsFlipping(false);
   // };
 
-  // const animationViewportSettings =
-  // 	isMobile
-  // 		? {
-  // 				once: false,
-  // 				amount: 1,
-  // 				margin: '0px 0px -300px 0px',
-  // 		  }
-  // 		: {
-  // 				once: false,
-  // 				amount: 1,
-  // 				margin: '0px 0px -120px 0px',
-  // 		  };
+  // // Reverse flip animation sequence
+  // const reverseFlipSequence = async () => {
+  //   setIsFlipping(true);
+  //   await controls.start({
+  //     rotateY: 0, // Back to the original state
+  //     transition: { duration: 1, ease: "easeInOut" },
+  //   });
+  //   setIsFlipped(false); // Mark that it's back in the original state
+  //   setIsFlipping(false);
+  // };
+
+  // // Handle scrolling and triggering the flip animation
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     // console.log(window.innerHeight);
+  //     // console.log(window.scrollY);
+  //     // console.log(scrollYProgress, "scrollyprogress");
+  //     // console.log(scrollY, "scrolly");
+  //     const triggerPoint = window.innerHeight * 0.5; // Trigger halfway down the screen
+  //     const scrollYZ = window.scrollY;
+
+  //     if (scrollYZ > triggerPoint && !isFlipped && !isFlipping) {
+  //       flipSequence(); // Trigger flip animation when scrolling past the point
+  //     } else if (scrollYZ <= triggerPoint && isFlipped && !isFlipping) {
+  //       reverseFlipSequence(); // Trigger reverse flip when scrolling back up
+  //     }
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+  //   // console.log(isFlipped, "isflipped");
+  //   // console.log(isFlipping, "isflipping");
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [isFlipped, isFlipping, controls]);
+
+  // const handleFlip = () => {
+  //   setIsFlipper(!isFlipped);
+  //   setIsAnimated(true);
+  // };
+
+  // useMotionValueEvent(scrollY, "change", (latest) => {
+  //   handleFlip();
+  //   console.log(isFlipped);
+  //   console.log(isAnimated);
+  //   console.log(latest);
+  // });
+
+  const animationOrder = {
+    cardInitiateRotate: 0.2,
+    cardEndRotate: 0.22,
+    cardBackgroundColor: 0.3,
+  };
+
+  const cardRotate = useTransform(
+    scrollYProgress,
+    [animationOrder.cardInitiateRotate, animationOrder.cardEndRotate],
+    [540, 0]
+  );
+  const imgOpacity = useTransform(
+    scrollYProgress,
+    [animationOrder.cardInitiateRotate, animationOrder.cardBackgroundColor],
+    [1, 0]
+  );
 
   return (
-    <motion.div
-      id="about"
-      className="about-container section-container"
-      ref={aboutSectRef}
-      style={{
-        opacity: aboutSectFadeOut,
-        scale: aboutSectScale,
-        translateY: aboutSectTranslateY,
-      }}
-    >
-      <div className="about-me-wrapper">
-        <div className="about-me-content">
+    <div id="about" className="about-container section-container">
+      <motion.div className="about-me-wrapper" ref={aboutSectRef}>
+        <motion.div
+          className="about-me-content"
+          // animate={controls}
+        >
           <motion.div
-            className="image"
-            style={{
-              opacity: imgOpacity,
-            }}
-          >
-            <img
-              src={pic}
-              alt="dev"
-              width="550"
-              height="100%"
-            />
-          </motion.div>
-          <motion.div className="text-content">
-            <motion.div
-              style={{
-                x: par1SlideIn,
-                opacity:
-                  par1SlideInFade,
-              }}
-              className="text"
-            >
-              <p>
-                {
-                  messages[
-                    currentLocale
-                  ].par1
-                }
-              </p>
-            </motion.div>
+            className="line"
+            style={{ scaleX: scrollYProgress }}
+          ></motion.div>
+          <div className="image">
+            <div className="gradient"></div>
+          </div>
 
-            <motion.div
-              key="text"
-              style={{
-                x: par2SlideIn,
-                opacity:
-                  par2SlideInFade,
-              }}
+          <div className="text-content">
+            <div
+              // style={{
+              //   x: par1SlideIn,
+              //   opacity: par1SlideInFade,
+              // }}
               className="text"
             >
-              <p>
-                {
-                  messages[
-                    currentLocale
-                  ].par2
-                }
-              </p>
-            </motion.div>
+              <p>{messages[currentLocale].par1}</p>
+            </div>
 
-            <motion.div
+            <div
               key="text"
-              style={{
-                x: par3SlideIn,
-                opacity:
-                  par3SlideInFade,
-              }}
+              // style={{
+              //   x: par2SlideIn,
+              //   opacity: par2SlideInFade,
+              // }}
               className="text"
             >
-              <p>
-                {
-                  messages[
-                    currentLocale
-                  ].par3
-                }
-              </p>
-            </motion.div>
-            <motion.div
+              <p>{messages[currentLocale].par2}</p>
+            </div>
+
+            <div
               key="text"
-              style={{
-                x: par4SlideIn,
-                opacity:
-                  par4SlideInFade,
-              }}
+              // style={{
+              //   x: par3SlideIn,
+              //   opacity: par3SlideInFade,
+              // }}
               className="text"
             >
-              <p>
-                {
-                  messages[
-                    currentLocale
-                  ].par4
-                }
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
+              <p>{messages[currentLocale].par3}</p>
+            </div>
+            <div
+              key="text"
+              // style={{
+              //   x: par4SlideIn,
+              //   opacity: par4SlideInFade,
+              // }}
+              className="text"
+            >
+              <p>{messages[currentLocale].par4}</p>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
   );
 };
 

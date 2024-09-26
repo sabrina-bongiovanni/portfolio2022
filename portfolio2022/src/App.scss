@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nunito:wght@400;600;700&family=Ubuntu+Mono&display=swap');
-@import './variables.scss';
-@import './Components/About/About.scss';
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nunito:wght@400;600;700&family=Ubuntu+Mono&display=swap");
+@import "./variables.scss";
+@import "./Components/About/About.scss";
 
 body {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   background-color: $background-color;
 
   div.main-container {
     margin-left: 150px;
     max-width: 75%;
 
-    .section-container {
-      width: 1330px;
-    }
+    // .section-container {
+    //   width: 1330px;
+    // }
 
     @media (min-width: 375px) and (max-width: 767px) {
       margin: 0px 80px;

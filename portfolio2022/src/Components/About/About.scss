@@ -1,62 +1,67 @@
 .about-container {
   display: flex;
-  align-items: start;
-  height: 350vh;
-
+  justify-content: center;
   .about-me-wrapper {
-    position: sticky;
-    top: 23%;
+    width: 60%;
+    position: relative;
 
-    .about-me-content {
-      display: flex;
-      align-items: stretch;
-      column-gap: 40px;
+    .image {
+      position: relative;
+      background-image: url(../../media/picture.jpg);
+      background-position: 50%;
+      background-size: cover;
+      width: 400px;
+      height: 400px;
 
-      .image {
-        position: relative;
-        .overlay {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          background: linear-gradient(
-            133deg,
-            #233349,
-            #a8512f,
-            #233349,
-            #c4772a,
-            #233349,
-            #edd6cc
-          );
-          background-size: 300%;
-          mix-blend-mode: color;
-          background-repeat: no-repeat;
-          // background-position-x;
-        }
-      }
-
-      .text-content {
-        padding-left: 40px;
-        position: relative;
-        font-size: 18px;
-        line-height: 1.4;
-        letter-spacing: 1.1px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        color: $primary;
-        p {
-          margin: 0px 0px 5px;
-        }
+      .gradient {
+        width: 100%;
+        height: 100%;
+        background: rgb(237 214 204);
+        mix-blend-mode: soft-light;
       }
     }
   }
 }
 
-#about::before {
-  content: '';
-  display: block;
-  height: 75px;
-  margin-top: -75px;
-  visibility: hidden;
-}
+// .about-container {
+//   display: flex;
+//   align-items: start;
+
+//   .about-me-wrapper {
+//     position: sticky;
+//     top: 23%;
+
+//     .about-me-content {
+//       display: flex;
+//       align-items: stretch;
+//       column-gap: 40px;
+
+//       .image {
+//         position: relative;
+//       }
+
+//       .text-content {
+//         padding-left: 40px;
+//         position: relative;
+//         font-size: 18px;
+//         line-height: 1.4;
+//         letter-spacing: 1.1px;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         color: $primary;
+//         p {
+//           margin: 0px 0px 5px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// #about::before {
+//   content: "";
+//   display: block;
+//   height: 75px;
+//   margin-top: -75px;
+//   visibility: hidden;
+// }
