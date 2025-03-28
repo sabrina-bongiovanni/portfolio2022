@@ -7,26 +7,15 @@ import projectsData from './ProjectsData.json';
 
 import './Projects.scss';
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from 'framer-motion';
+import { motion, useScroll, useTransform } from 'motion/react';
 
-const Projects = ({
-  currentLocale,
-}) => {
+const Projects = ({ currentLocale }) => {
   const projectsSectRef = useRef();
 
-  const { scrollYProgress } = useScroll(
-    {
-      target: projectsSectRef,
-      offset: [
-        'start end',
-        'end start',
-      ],
-    }
-  );
+  const { scrollYProgress } = useScroll({
+    target: projectsSectRef,
+    offset: ['start end', 'end start'],
+  });
 
   const animationOrder = {
     initial: 0,
@@ -38,18 +27,12 @@ const Projects = ({
 
   const titleFadeIn = useTransform(
     scrollYProgress,
-    [
-      animationOrder.titleFadeIn,
-      animationOrder.titleFadeInEnd,
-    ],
+    [animationOrder.titleFadeIn, animationOrder.titleFadeInEnd],
     [0, 1]
   );
   const titleScale = useTransform(
     scrollYProgress,
-    [
-      animationOrder.titleFadeIn,
-      animationOrder.titleScaleEnd,
-    ],
+    [animationOrder.titleFadeIn, animationOrder.titleScaleEnd],
     ['80%', '100%']
   );
 
@@ -69,22 +52,14 @@ const Projects = ({
             scale: titleScale,
           }}
         >
-          {
-            messages[currentLocale]
-              .navbarLinkProjects
-          }
+          {messages[currentLocale].navbarLinkProjects}
         </motion.h2>
       </div>
       <div className="projects-wrapper">
         <div className="projects-grid">
-          {projectsData.map(
-            (project, index) => (
-              <ProjectItem
-                projectsData={project}
-                ref={projectsSectRef}
-              />
-            )
-          )}
+          {projectsData.map((project, index) => (
+            <ProjectItem projectsData={project} ref={projectsSectRef} />
+          ))}
         </div>
       </div>
     </motion.div>
